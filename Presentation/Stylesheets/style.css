@@ -109,6 +109,12 @@ h2 {
     border-color: currentColor;
 }
 
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 .g {
     display: grid;
     gap: 24px;
