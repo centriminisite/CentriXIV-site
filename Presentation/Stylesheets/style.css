@@ -15,21 +15,6 @@
     --ph: #EBD9DD;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --ink: #1C070D;
-        --paper: #240C13;
-        --alt: #2E1019;
-        --card: #38141F;
-        --line: #512231;
-        --text: #F5E8EA;
-        --muted: #D2B5BB;
-        --accent: #D8364F;
-        --eyebrow: #F2A0AE;
-        --ph: #4A1B28;
-    }
-}
-
 * {
     box-sizing: border-box;
 }
