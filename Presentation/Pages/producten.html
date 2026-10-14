@@ -53,6 +53,14 @@
                             <h3>Product 1</h3>
                             <p>Beschrijving volgt</p>
                             <strong>€ [prijs]</strong>
+                            <form method="post" action="bestel.php">
+                                <input type="hidden" name="product_id" value="1">
+                                <button type="submit" class="btn">Bestellen</button>
+                            </form>
+                            <form method="post" action="../../Logic/Serverside/voeg_toe_aan_winkelmand.php">
+                                <input type="hidden" name="product_id" value="1">
+                                <button type="submit" class="btn">Winkelmand icoon hier</button>
+                            </form>
                         </div>
 
                         <div class="card">
