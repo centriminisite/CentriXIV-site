@@ -1,0 +1,58 @@
+CREATE DATABASE IF NOT EXISTS centrixiv;
+USE centrixiv;
+
+CREATE TABLE tblProducten (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    Productnaam VARCHAR(150) NOT NULL,
+    productomschrijving TEXT,
+    prijs DECIMAL(10,2) NOT NULL,
+    imgnaam VARCHAR(255) NULL
+);
+
+CREATE TABLE tblbestellingen (
+    bestellingsID INT AUTO_INCREMENT PRIMARY KEY,
+    klantvoornaam VARCHAR(100) NOT NULL,
+    klantfamilienaam VARCHAR(100) NOT NULL,
+    klantemail VARCHAR(255) NOT NULL,
+    datum DATE NOT NULL,
+    tijd TIME NOT NULL,
+    betalingsstatus VARCHAR(50) NOT NULL DEFAULT 'Open'
+);
+
+CREATE TABLE tblproductbestellingen (
+    productbestelingsid INT AUTO_INCREMENT PRIMARY KEY,
+    bestellingsid INT NOT NULL,
+    productid INT NOT NULL,
+    optiesomschrijving TEXT,
+    FOREIGN KEY (bestellingsid)
+        REFERENCES tblbestellingen(bestellingsID),
+    FOREIGN KEY (productid)
+        REFERENCES tblProducten(ProductID)
+);
+
+CREATE TABLE tblProductOpties (
+    optieID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL,
+    optienaam VARCHAR(100) NOT NULL,
+    optietype VARCHAR(50) NOT NULL DEFAULT 'tekst',
+    verplicht BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (ProductID)
+        REFERENCES tblProducten(ProductID)
+);
+
+-- Producten
+INSERT INTO tblProducten
+    (ProductID, Productnaam, productomschrijving, prijs, imgnaam)
+VALUES
+    (1, 'product1', 'productomschrijving1', 9.99, 'product1.jpg'),
+    (2, 'product2', 'productomschrijving2', 14.50, 'product2.png'),
+    (3, 'product3', 'productomschrijving3', 24.95, 'product3.webp');
+
+-- Productopties
+INSERT INTO tblProductOpties
+    (optieID, ProductID, optienaam, optietype, verplicht)
+VALUES
+    (1, 1, 'Persoonlijke boodschap', 'tekst', FALSE),
+    (2, 1, 'Naam op het product', 'tekst', FALSE),
+    (3, 2, 'Persoonlijke boodschap', 'tekst', FALSE),
+    (4, 3, 'Gewenste kleur', 'tekst', TRUE);
